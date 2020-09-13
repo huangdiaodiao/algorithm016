@@ -1,5 +1,4 @@
-# 暴力求解法
-```
+// 暴力求解法
 class Solution {
 public:
     int trap(vector<int>& height) {
@@ -30,12 +29,10 @@ public:
     // 空间复杂度为O(1)
 };
 
-```
 
 
-# 使用栈
+// 使用栈
 
-```
 class Solution {
 public:
     // 通过栈来解决
@@ -67,5 +64,3 @@ public:
     // 时间复杂度为O(n)
     // 空间复杂度为O(1)
 };
-
-```
