@@ -41,3 +41,33 @@ public:
         // 空间复杂度 O(n)
     }
 };
+
+//
+// 用数组来模拟
+//
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        /* 使用哈希表来解决 */
+
+        if (s.size() != t.size())
+            return false;
+
+        vector<int> hashVec(26, 0);
+
+        for (auto &ch : s) {
+            ++hashVec[ch - 'a'];
+        }
+
+        for (auto &ch : t) {
+            if (--hashVec[ch - 'a'] <0)
+                return false;
+        }
+
+        return true;
+        
+        // 时间复杂度 O(n)
+        // 空间复杂度 O(n)
+    }
+};
