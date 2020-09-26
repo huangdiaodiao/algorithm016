@@ -1,24 +1,36 @@
+class MonotonicQueue {
+private:
+    deque<int> data;
+public:
+    void push(int n) {
+        while (!data.empty() && data.back() < n) 
+            data.pop_back();
+        data.push_back(n);
+    }
+    
+    int max() { return data.front(); }
+    
+    void pop(int n) {
+        if (!data.empty() && data.front() == n)
+            data.pop_front();
+    }
+};
+
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-
-        vector<int> ans;
-        
-        std::deque<int> mydeque;
-
-        for (int i = 0; i < nums.size(); ++i) {
-            while(!mydeque.empty() && mydeque.front() < nums[i])
-                mydeque.pop_front();
-            
-            mydeque.push_back(nums[i]);
-
-            if (i -k + 1 >= 0 ) 
-                ans.push_back(mydeque.front());
-        
+        MonotonicQueue window;
+        vector<int> res;
+        for (int i = 0; i < nums.size(); i++) {
+            if (i < k - 1) { 
+                window.push(nums[i]);
+            } else {
+                window.push(nums[i]);
+                res.push_back(window.max());
+                window.pop(nums[i - k + 1]);
+            }
         }
-
-        return ans;
-		// 时间复杂度 O(n)
+        return res;
     }
 };
 
